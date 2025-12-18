@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import { useFrameContext } from "~/components/providers/frame-provider";
 import { sdk } from "@farcaster/miniapp-sdk";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi"; // Tambahkan useConnect di sini
 import { Settings, LogIn, FastArrowRight, OpenInBrowser, Link, ProfileCircle, Coins, ArrowUp, Send, Eye, Edit, Plus, Xmark, Terminal, Camera, Phone } from "iconoir-react";
 import { SignInAction } from "~/components/actions/signin";
 import { QuickAuthAction } from "~/components/actions/quick-auth";
@@ -46,10 +46,26 @@ const WalletActionsComponent = () => (
 export default function Demo() {
   const frameContext = useFrameContext();
   const { isConnected } = useAccount();
+  const { connectors, connect } = useConnect(); // Inisialisasi hook connect
   const [activeTab, setActiveTab] = useState<TabType>("actions");
   const [currentActionPage, setCurrentActionPage] = useState<ActionPageType>("list");
   const [currentWalletPage, setCurrentWalletPage] = useState<WalletPageType>("list");
   const [capabilities, setCapabilities] = useState<string[] | null>(null);
+
+  // --- LOGIKA AUTO CONNECT ---
+  useEffect(() => {
+    // Jalankan hanya jika belum connect dan terdeteksi di dalam Mini App
+    if (!isConnected && frameContext?.isInMiniApp) {
+      const farcasterConnector = connectors.find(
+        (c) => c.id === "farcasterMiniApp" || c.name.toLowerCase().includes("farcaster")
+      );
+
+      if (farcasterConnector) {
+        connect({ connector: farcasterConnector });
+      }
+    }
+  }, [isConnected, frameContext?.isInMiniApp, connectors, connect]);
+  // ----------------------------
 
   useEffect(() => {
     const getCapabilities = async () => {
@@ -147,11 +163,8 @@ export default function Demo() {
 
   return (
     <div style={{ 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       marginTop: (frameContext?.context as any)?.client?.safeAreaInsets?.top ?? 0,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       marginLeft: (frameContext?.context as any)?.client?.safeAreaInsets?.left ?? 0,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       marginRight: (frameContext?.context as any)?.client?.safeAreaInsets?.right ?? 0,
     }}>
       <div className="w-full max-w-lg mx-auto">
