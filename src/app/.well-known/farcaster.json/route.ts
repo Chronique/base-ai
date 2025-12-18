@@ -24,7 +24,6 @@ export async function GET() {
         "requiredCapabilities": [
           "actions.ready",
           "actions.signIn", 
-          "actions.openMiniApp",
           "actions.addMiniApp",
           "actions.openUrl",
           "actions.sendToken",
@@ -34,7 +33,10 @@ export async function GET() {
           "actions.swapToken",
           "actions.close",
           "actions.viewCast",
-          "wallet.getEthereumProvider"
+          "wallet.getEthereumProvider",
+          "haptics.impactOccurred",
+        "haptics.notificationOccurred",
+        "haptics.selectionChanged"
         ],
         "requiredChains": [
           "eip155:8453",
