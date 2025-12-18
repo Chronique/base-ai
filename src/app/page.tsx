@@ -11,7 +11,7 @@ export default function Home() {
   const handleCapture = async (base64Img: string) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/transform', {
+      const res = await fetch('/api/webhook/transform', {
         method: 'POST',
         body: JSON.stringify({ image: base64Img }),
       });
