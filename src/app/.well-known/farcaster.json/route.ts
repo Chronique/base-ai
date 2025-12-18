@@ -3,11 +3,9 @@ import { METADATA } from "../../../lib/utils";
 export async function GET() {
   const config = {
     accountAssociation: {
-      header:
-        "eyJmaWQiOjEyMTQyLCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4MDRlNkYxMTFlQmY2RkQyNTU3NmQ0ODA0ODA5NjI0MzVEYzNhYThEOCJ9",
-      payload: "eyJkb21haW4iOiJmcmFtZXMtdjItZGVtby1saWxhYy52ZXJjZWwuYXBwIn0",
-      signature:
-        "MHg5MGI1YzA0Zjc3MGY1M2I4M2I3OGQzOTMwNTNjMmJjZjUwNmE3ZThjNDViYmEwNDk2OTcwZTM1ZTQ0YzU2MGU1Nzc4Y2Y1ZTJkNDY2YzE1MWQxNGMzYmFjNzM3ZDcxZGEwZDVjYWJmMGMzZTdhYTc2YzRjMmQ5MmE5NDJhYjkyODFj",
+      "header": "eyJmaWQiOjM0NTk5MywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDExMDkxOGJiRmQ2ODE3NjRhMTU3MDU4MUVBNTI0N2ZmYjk5M0NGYzAifQ",
+    "payload": "eyJkb21haW4iOiJiYXNlLWFpLXRocmVlLnZlcmNlbC5hcHAifQ",
+    "signature": "C3Jfufg4HT3aSqN4wfxgWfhdLvr5oQJhmr7v2flD33Nz0YK4HOGaFo2QgHoN13c5ortBhZ1vnbxQnIXxLx+OFhs="
     },
       "frame": {
         "version": "1",
@@ -22,7 +20,7 @@ export async function GET() {
         "ogTitle": METADATA.name,
         "ogDescription": METADATA.description,
         "ogImageUrl": METADATA.bannerImageUrl,
-        "primaryCategory": "developer-tools",
+        "primaryCategory": "art-creativity",
         "requiredCapabilities": [
           "actions.ready",
           "actions.signIn", 
@@ -43,10 +41,10 @@ export async function GET() {
           "eip155:10"
         ],
         "noindex": false,
-        "tags": ["base", "baseapp", "miniapp", "demo", "basepay"]
+        "tags": ["base", "baseapp", "entertainment", "social"]
       },
       "baseBuilder": {
-        "allowedAddresses": ["0x8342A48694A74044116F330db5050a267b28dD85"],
+        "allowedAddresses": ["0x4fba95e4772be6d37a0c931D00570Fe2c9675524"],
       }
   };
 
